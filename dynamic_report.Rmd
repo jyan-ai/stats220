@@ -68,7 +68,7 @@ largest_time <- latest_data %>%
 
 ```
 
-In this bar chart of most common screen time of the day, it is pretty obvious that i use my phone during the `r largest_time` , the most. This is most likely due to the fact that during the evenings i wind down and get ready for bed, and this usually comprises of me scrolling or watching a video to sleep to💤.
+In this bar chart of most common screen time of the day, it is pretty obvious that i use my phone during the `r largest_time` responses, the most. This is most likely due to the fact that during the evenings i wind down and get ready for bed, and this usually comprises of me scrolling or watching a video to sleep to💤.
 
 ## Weekly patterns
 
