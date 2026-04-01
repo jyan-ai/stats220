@@ -60,9 +60,15 @@ ggplot(latest_data, aes(y = main_time_of_day)) +
         theme(plot.background = element_rect(fill = "honeydew"),
           panel.background = element_rect(fill = "darkgrey"),
           text = element_text(color = "black"))
+
+largest_time <- latest_data %>%
+  count(main_time_of_day) %>%
+  arrange(desc(n)) %>%
+  slice_head(n = 1)
+
 ```
 
-In this bar chart of most common screen time of the day, it is pretty obvious that i use my phone during the evenings (6:00 pm - 9:00 pm) the most. This is most likely due to the fact that during the evenings i wind down and get ready for bed, and this usually comprises of me scrolling or watching a video to sleep to💤.
+In this bar chart of most common screen time of the day, it is pretty obvious that i use my phone during the `r largest_time` , the most. This is most likely due to the fact that during the evenings i wind down and get ready for bed, and this usually comprises of me scrolling or watching a video to sleep to💤.
 
 ## Weekly patterns
 
@@ -82,6 +88,18 @@ latest_data %>%
   theme(plot.background = element_rect(fill = "lightyellow"),
         panel.background = element_rect(fill = "darkgrey"),
         text = element_text(color = "black"))
+
+day_average <- latest_data %>%
+  group_by(day_of_week) %>%
+    summarise(avg_screen_hours = mean(screen_hours, na.rm = TRUE))
+
+highest_day <- day_average %>%
+  arrange(desc(avg_screen_hours)) %>%
+  slice_head(n = 1)
+
+highest_day_name <- highest_day$day_of_week
+highest_day_hours <- round(highest_day$avg_screen_hours, 1)
+
 ```
 
-In this bar chart of screen time by day of week, the average screen hours is significantly higher than that of the weekdays. This may be due to the fact that i use my phone more scrolling in bed or just leisurely watching something in bed 😭. I know its probably not the most productive thing i could be doing during the weekends.
+In this bar chart of screen time by day of week, the average screen hours is higher for `r highest_day_name` with an average of `r highest_day_hours` hours. This may be due to the fact that i use my phone more scrolling in bed or just leisurely watching something in bed 😭. I know its probably not the most productive thing i could be doing during the weekends.
